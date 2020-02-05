@@ -11,7 +11,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/minSubArrayLen.js",
+      "program": "${workspaceFolder}/reverse.js",
     }
   ]
 }
