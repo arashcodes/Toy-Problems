@@ -10,21 +10,13 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
-  let left = 0;
-  let right = 1;
-  while (right < nums.length) {
-      if (nums[left] === 0 && nums[right] !== 0) {
-          [nums[left], nums[right]] = [nums[right], nums[left]]
-          left++;
-          right++
-      } else if (nums[left] === 0 && nums[right] === 0) {
-          right++;
-      } else {
-        right++;
-        left++;   
-      }
-  }
-  return nums;
+  for (let i = nums.length - 1; i > -1; i--) {
+    if (nums[i] === 0) {
+        nums.splice(i, 1);
+        nums.push(0)
+    }
+}
+return nums;
 };
 // @lc code=end
 
