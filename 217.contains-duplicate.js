@@ -10,19 +10,15 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-  let arr = nums.sort();
-    let left = 0;
-    let right = 1;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[left] === arr[right]) {
-            return true;
+  let lookup = {};
+    for (let i = 0; i < nums.length; i++) {
+        if (!lookup[nums[i]]) {
+            lookup[nums[i]] = 1;
         } else {
-            left++;
-            right++;
+            return true;
         }
     }
     return false;
-    
 };
 // @lc code=end
 
