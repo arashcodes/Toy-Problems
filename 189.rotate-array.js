@@ -12,9 +12,10 @@
  */
 var rotate = function(nums, k) {
   let last = nums[nums.length - 1]
-    for (let i = 0; i < k; i++) {
-        let target = nums.pop(last);
-        nums.unshift(target);
+    let rotateBy = k;
+    if (k >= nums.length) {rotateBy = (k % nums.length)}
+    for (let i = 0; i < rotateBy; i++) {
+        nums.unshift(nums.pop(last))
     }
     return nums;
 };
