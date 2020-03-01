@@ -60,4 +60,12 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+  get(idx) {
+    if (idx < 0 || idx > this.length - 1) return null;
+    let node = this.head;
+    for (let i = 0; i < idx; i++) {
+      node = node.next;
+    }
+    return node;
+  }
 }
