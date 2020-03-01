@@ -40,4 +40,11 @@ class SinglyLinkedList {
     }
     return temp;
   }
+  shift() {
+    if (this.length === 0) return undefined;
+    const currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+    return currentHead;
+  }
 }
