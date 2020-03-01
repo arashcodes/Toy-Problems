@@ -69,9 +69,11 @@ class SinglyLinkedList {
     return node;
   }
   set(idx, value) {
-    if (!this.get(idx)) return false;
-    let node = this.get(idx);
-    node.val = value;
-    return this;
+    let foundNode = this.get(idx);
+    if(foundNode) {
+      foundNode.val = value;
+      return true;
+    }
+    return false;
   }
 }
