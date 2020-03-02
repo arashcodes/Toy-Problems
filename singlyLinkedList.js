@@ -80,9 +80,9 @@ class SinglyLinkedList {
     if (idx < 0 || idx > this.length) {
       return false;
     } else if (idx === 0) {
-      this.unshift(val)
+      return !!this.unshift(val)
     } else if (idx === this.length) {
-      this.push(val)
+      return !!this.push(val)
     } else {
       let pre = this.get(idx - 1);
       let after = pre.next;
