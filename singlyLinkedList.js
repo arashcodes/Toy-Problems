@@ -104,4 +104,18 @@ class SinglyLinkedList {
     this.length--;
     return temp;
   }
+  reverse() {
+    [this.head, this.tail] = [this.tail, this.head];
+    let prev = this.tail;
+    let curr = prev.next;
+    let next = curr.next;
+    while(this.head.next === null) {
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+      if (next.next !== null) next = next.next;
+    }
+    this.tail.next = null;
+    return this;
+  }
 }
