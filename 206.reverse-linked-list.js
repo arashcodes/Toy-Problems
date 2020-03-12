@@ -17,15 +17,25 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-  let prev = null;
-  let curr = head;
-  while(curr) {
-    const temp = curr.next;
-    curr.next = prev;
-    prev = curr;
-    curr = temp;
-  }
-  return prev;
+  // Iteratively
+  // let prev = null;
+  // let curr = head;
+  // while(curr) {
+  //   const temp = curr.next;
+  //   curr.next = prev;
+  //   prev = curr;
+  //   curr = temp;
+  // }
+  // return prev;
+
+  // Recursively
+  if (head === null || head.next === null) return head;
+
+  const newHead = reverseList(head.next);
+  head.next.next = head;
+  head.next = null;
+
+  return newHead;
 };
 // @lc code=end
 
