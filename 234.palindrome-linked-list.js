@@ -17,21 +17,24 @@
  * @return {boolean}
  */
 var isPalindrome = function(head) {
-  let arr = [];
-  let curr = head;
-  while(curr) {
-    arr.push(curr.val);
-    curr = curr.next
+  if (!head) return null;
+
+  let first = prev = head;
+
+  while(first.next !== null) {
+    first = first.next;
+    first.prev = prev;
+    prev = prev.next;
   }
-  let left = 0;
-  let right = arr.length - 1;
-  while (left <= right) {
-    if (arr[left] !== arr[right]) {
-      return false;
-    }
-    left++;
-    right--;
+
+  let second = head;
+
+  while(second.next !== null && first.prev !== null) {
+    if (first.val !== second.val) return false;
+    second = second.next;
+    first = first.prev;
   }
+
   return true;
 };
 // @lc code=end
