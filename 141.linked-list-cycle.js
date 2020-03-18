@@ -19,16 +19,13 @@
  */
 var hasCycle = function(head) {
   if (!head || !head.next) return false;
-
-  let curr = head;
-  const checked = 'yes';
-
-  while (curr !== null && curr.checked === undefined) {
-    curr.checked = checked;
-    curr = curr.next;
-    if (curr !== null && curr.checked) {
-      return true;
-    }
+  
+  let slow = fast = head;
+  while (slow && fast) {
+    slow = slow.next;
+    if (!fast.next || !fast.next.next) return false;
+    fast = fast.next.next;
+    if (slow && fast && slow.val === fast.val) return true
   }
   return false;
 };
