@@ -52,4 +52,37 @@ class DoublyLinkedList {
     this.length--;
     return oldHead;
   }
+  unshift(val) {
+    const newNode = new Node(val);
+    if (this.length === 0) {
+      this.head = this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode
+    }
+    this.length++;
+    return this;
+  }
+  get(idx) {
+    if (idx < 0 || idx >= this.length) return null;
+    const mid = this.length / 2;
+    let res;
+    if (idx <= mid) {
+      let counter = 0;
+      res = this.head;
+      while (counter !== idx) {
+        res = res.next;
+        counter++;
+      }
+    } else {
+      let counter = this.length - 1;
+      res = this.tail;
+      while (counter !== idx) {
+        res = res.prev;
+        counter--;
+      }
+    }
+    return res;
+  }
 }
