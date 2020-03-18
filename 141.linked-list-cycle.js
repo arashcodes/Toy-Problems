@@ -21,11 +21,10 @@ var hasCycle = function(head) {
   if (!head || !head.next) return false;
   
   let slow = fast = head;
-  while (slow && fast) {
+  while (fast && fast.next) {
     slow = slow.next;
-    if (!fast.next || !fast.next.next) return false;
     fast = fast.next.next;
-    if (slow && fast && slow.val === fast.val) return true
+    if (slow === fast) return true
   }
   return false;
 };
