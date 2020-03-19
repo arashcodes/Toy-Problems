@@ -130,6 +130,7 @@ class DoublyLinkedList {
       before.next = after;
       after.prev = before;
       target.next = target.prev = null;
+      this.length--;
       return target;
     }
   }
