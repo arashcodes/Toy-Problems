@@ -98,4 +98,22 @@ class DoublyLinkedList {
     }
     return false;
   }
+
+  insert(idx, val) {
+    if (idx < 0 || idx > this.length) return false;
+    if (idx === 0) {
+      this.unshift(val);
+    } else if (idx === this.length) {
+      this.push(val);
+    } else {
+      const newNode = new Node(val);
+      const prevNode = this.get(idx - 1);
+      newNode.next = prevNode.next;
+      prevNode.next.prev = newNode;
+      prevNode.next = newNode;
+      newNode.prev = prevNode;
+      this.length++;
+    }
+    return true;
+  }
 }
