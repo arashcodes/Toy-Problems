@@ -67,7 +67,7 @@ class BinarySearchTree {
       }
       return visited;
   }
-  DFSPreOrder(root) {
+  DFSPreOrder() {
     const visited = [];
     const current = this.root;
     function traverse(node) {
@@ -79,7 +79,7 @@ class BinarySearchTree {
     return visited;
   }
 
-  DFSPostOrder(root) {
+  DFSPostOrder() {
     const visited = [];
     const current = this.root;
     function traverse(node) {
