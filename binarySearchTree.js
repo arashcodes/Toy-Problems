@@ -90,4 +90,16 @@ class BinarySearchTree {
     traverse(current);
     return visited;
   }
+
+  DFSInORder() {
+    const visited = [];
+    const current = this.root;
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      visited.push(node.val);
+      if (node.right) traverse(node.right);
+    }
+    traverse(current);
+    return visited;
+  }
 }
