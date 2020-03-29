@@ -24,7 +24,6 @@ var isValidBST = function(root) {
     if (node.val <= min || node.val >= max) return false;
     return validate(node.left, min, node.val) && validate (node.right, node.val, max);
   }
-
   return validate(root, min=-Infinity, max=Infinity);
 };
 // @lc code=end
