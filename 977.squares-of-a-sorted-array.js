@@ -9,25 +9,25 @@
  * @param {number[]} A
  * @return {number[]}
  */
-var sortedSquares = function(A) {
-  for (let i = 0; i < A.length; i++) {
-    A[i] = A[i] * A[i];
-  }
+var sortedSquares = function(arr) {
+  let start = 0;
+  let end = arr.length - 1;
+  let res = new Array(arr.length);
   
-  let notSorted = true;
-  
-  while (notSorted) {
-    notSorted = false;
+  for (let i = arr.length -1; i >= 0; i--) {
+    const sq1 = arr[start] ** 2;
+    const sq2 = arr[end] ** 2;
     
-    for (let i = 0; i < A.length; i++) {
-      if (A[i] > A[i + 1]) {
-        [A[i], A[i + 1]] = [A[i + 1], A[i]];
-        notSorted = true;
-      }
+    if (sq1 > sq2) {
+      res[i] = sq1;
+      start++;
+    } else {
+      res[i] = sq2;
+      end--;
     }
   }
   
-  return A;
+  return res;
 };
 // @lc code=end
 
