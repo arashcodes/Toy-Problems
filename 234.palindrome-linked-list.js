@@ -17,25 +17,43 @@
  * @return {boolean}
  */
 var isPalindrome = function(head) {
-  if (!head) return null;
-
-  let first = prev = head;
-
-  while(first.next !== null) {
-    first = first.next;
-    first.prev = prev;
-    prev = prev.next;
+  if (!head) return true;
+  
+  let slow = head;
+  let fast = head;
+  
+  while (fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
   }
-
-  let second = head;
-
-  while(second.next !== null && first.prev !== null) {
-    if (first.val !== second.val) return false;
-    second = second.next;
-    first = first.prev;
+  
+  let firstHead = head;
+  let secondHead = reverse(slow.next);
+  
+  while (firstHead && secondHead) {
+    if (firstHead.val !== secondHead.val) {
+      return false;
+    }
+    firstHead = firstHead.next;
+    secondHead = secondHead.next;
   }
-
+  
   return true;
 };
+
+function reverse(head) {
+  let prev = null;
+  let curr = head;
+  
+  while (curr) {
+    const temp = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = temp;
+  }
+  
+  return prev;
+}
+
 // @lc code=end
 
