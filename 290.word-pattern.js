@@ -11,40 +11,18 @@
  * @return {boolean}
  */
 var wordPattern = function(pattern, str) {
-  const patternList = pattern.split('');
-  const strList = str.split(' ');
-  if (patternList.length !== strList.length) return false;
+  str = str.split(' ');
+  if (pattern.length !== str.length) return false;
   
-  let code = 0;
-  const pattObj = {};
-  const strObj = {};
+  const map = new Map();
   
-  for (let i = 0; i < patternList.length; i++) {
-    if (!pattObj[patternList[i]]) {
-      pattObj[patternList[i]] = code + 1;
-      code += 1;
+  for (let i = 0; i < str.length; i++) {
+    if (map.has(pattern[i])) {
+      if (map.get(pattern[i]) !== str[i]) return false;
+    } else {
+      if (Array.from(map.values()).includes(str[i])) return false;
+      map.set(pattern[i], str[i])
     }
-  }
-  
-  code = 0;
-  
-  for (let i = 0; i < strList.length; i++) {
-    if (!strObj[strList[i]]) {
-      strObj[strList[i]] = code + 1;
-      code += 1;
-    }
-  }
-  
-  for (let i = 0; i < patternList.length; i++) {
-    patternList[i] = pattObj[patternList[i]];
-  }
-  
-  for (let i = 0; i < strList.length; i++) {
-    strList[i] = strObj[strList[i]];
-  }
-  
-  for (let i = 0; i < patternList.length; i++) {
-    if (strList[i] !== patternList[i]) return false;
   }
   
   return true;
