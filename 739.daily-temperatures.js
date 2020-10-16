@@ -10,24 +10,13 @@
  * @return {number[]}
  */
 var dailyTemperatures = function(T) {
-  const res = [];
-  let counter, isFound;
+  const stack = [];
+  const res = new Array(T.length);
   
-  for (let i = 0; i < T.length; i += 1) {
-    counter = 0;
-    isFound = false;
-    for (let j = i + 1; j < T.length; j += 1) {
-      if (T[j] > T[i]) {
-        counter += 1;
-        isFound = true;
-        break;
-      } else if (j !== T.length - 1) {
-        counter +=1;
-      }
-      
-      if (j === T.length - 1 && !isFound) counter = 0;
-    }
-    res.push(counter);
+  for (let i = T.length - 1; i >= 0; i -= 1) {
+    while (stack.length && T[i] >= T[stack[stack.length - 1]]) stack.pop();
+    res[i] = !stack.length ? 0 : stack[stack.length - 1] - i;
+    stack.push(i);
   }
   
   return res;
