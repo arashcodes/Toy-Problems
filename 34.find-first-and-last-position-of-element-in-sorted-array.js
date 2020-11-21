@@ -11,22 +11,26 @@
  * @return {number[]}
  */
 var searchRange = function(nums, target) {
-  if (!nums.length) return [-1, -1];
-  
-  const res = [-1, -1];
-  let firstFound = false;
+  let first = -1;
+  let second = -1;
   
   for (let i = 0; i < nums.length; i += 1) {
-    if (nums[i] === target && !firstFound) {
-      firstFound = true;
-      res[0] = i;
-      res[1] = i;
-    } else if (nums[i] === target && firstFound) res[1] = i;
+    if (nums[i] === target) {
+      first = i;
+      break;
+    }
   }
   
-  if (!firstFound) return [-1, -1];
+  if (first === -1) return [first, second];
   
-  return res;
+  for (let i = nums.length; i >= 0; i -= 1) {
+    if (nums[i] === target) {
+      second = i;
+      break;
+    }
+  }
+  
+  return [first, second]
 };
 // @lc code=end
 
