@@ -10,20 +10,32 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-  if (s.length === 0) return true;
-  const str = s.toLowerCase().replace(/\W/g, '');
+  s = trimStr(s.toLowerCase());
+  let start = 0, end = s.length - 1;
   
-  let start = 0;
-  let end = str.length - 1;
+  while (start <= end) {
+    if (s[start] !== s[end]) return false;
+    
+    start += 1;
+    end -= 1;
+  }
   
-    while (end > -1 || start < str.length) {
-      if (str[start] !== str[end]) {
-        return false;
-      }
-      start++;
-      end--;
-    }
   return true;
 };
+
+function trimStr(str) {
+  console.log(str)
+  res = '';
+  
+  for (let i = 0; i < str.length; i += 1) {
+    if ((str[i] >= 'a' && str[i] <= 'z')
+        || 
+        str[i] >= '0' && str[i] <= '9') {
+      res += str[i];
+    }
+  }
+  
+  return res;
+}
 // @lc code=end
 
