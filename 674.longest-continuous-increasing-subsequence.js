@@ -10,21 +10,16 @@
  * @return {number}
  */
 var findLengthOfLCIS = function(nums) {
-  if (nums.length === 0) return 0;
-  
-  let curr = 1;
-  let max = 1;
+  let res = 0;
+  let anchor = 0;
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] < nums[i + 1]) {
-      curr++;
-      max = Math.max(max, curr);
-    } else {
-      curr = 1;
-    }
+  for (let i = 0; i < nums.length; i += 1) {
+    if (i > 0 && nums[i - 1] >= nums[i]) anchor = i;
+
+    res = Math.max(res, i - anchor + 1);
   }
 
-  return max;
+  return res;
 };
 // @lc code=end
 
