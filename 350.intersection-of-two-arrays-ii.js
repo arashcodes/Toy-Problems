@@ -11,24 +11,20 @@
  * @return {number[]}
  */
 var intersect = function(nums1, nums2) {
-  let res = [];
-    let small;
-    let big;
-    if (nums1.length <= nums2.length) {
-        small = nums1;
-        big = nums2;
-    } else {
-        small = nums2;
-        big = nums1;
+    const res = [];
+    const map1 = new Map();
+
+    for (let num of nums1) {
+        map1.set(num, map1.get(num) + 1 || 1);
     }
-    
-    for (let i = 0; i < small.length; i++) {
-        if (big.includes(small[i])) {
-            const idx = big.indexOf(small[i]);
-            big.splice(idx, 1);
-            res.push(small[i])
+
+    for (let num of nums2) {
+        if (map1.get(num)) {
+        res.push(num);
+        map1.set(num, map1.get(num) - 1);
         }
     }
+
     return res;
 };
 // @lc code=end
