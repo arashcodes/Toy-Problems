@@ -10,11 +10,13 @@
  * @return {number}
  */
 var missingNumber = function(nums) {
-  nums.sort((a, b) => a - b);
+  const numSet = new Set(nums);
   
   for (let i = 0; i <= nums.length; i += 1) {
-    if (i !== nums[i]) return i;
+    if (!numSet.has(i)) return i;
   }
+  
+  return -1;
 };
 // @lc code=end
 
